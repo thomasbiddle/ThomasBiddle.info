@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title> Thomas Biddle | Resume </title>
+		<LINK href="resume-style.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="resume-main.js"></script>
+		<script type="text/javascript" src="resume-print.js"></script>
+		<script type="text/javascript" src="resume-terminal.js"></script>
+		<!-- Send Android Phones to the Mobile App -->
+		<script type="text/javascript"> // <![CDATA[
+			if ( (navigator.userAgent.indexOf('Android') != -1) ) {
+				document.location = "market://details?id=com.thomasbiddle.resume";
+			} // ]]>
+		</script>
+		<!-- Send Android Phones to the Mobile App -->
+		<!-- Googla Analytics -->
+		<script type="text/javascript">
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-19839279-5']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>
+		<!-- End Google Analytics -->
+	</head>
+	<body onload="loadPage();">
+		<noscript>
+			</br></br></br></br></br>
+			<center>
+				Oh no - looks like you don't have Javascript enabled :( </br>
+				Please turn on Javascript to enjoy the site :D
+			</center>
+		</noscript>
+		<center>
+		</br></br></br>
+			<div id="terminalEmu" style="width:800px;height:200px;border-style:solid;border-width:0px;text-align:left;" onClick="document.getElementById('terminalInputId').focus();"></div>
+			<div id="parentDiv"> <!-- DOM needs a parent node if I want to remove the child... -->
+				<div id="choosePath" style="opacity:0;">
+					Which are you?
+					</br></br>
+					<span class='inLink'>
+						<a href="#" onclick="fade('terminalEmu'); fade('choosePath'); startEmu(); document.onkeypress = returnKey; removeDiv();">echo "Geek."&nbsp;&nbsp;</a> 
+						| 
+						<a href="#" onclick="fade('terminalEmu'); fade('choosePath'); startEmuPrint(); removeDiv();">&nbsp;&nbsp;&nbsp;... huh?&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					</span>
+				</div>
+			</div>
+		</center>
+	</body>
+</html>
