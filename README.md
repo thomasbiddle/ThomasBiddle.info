@@ -1,7 +1,7 @@
 <h1> ThomasBiddle.info Website Content </h1>
 
 <p>
-	This is the website content and source for ThomasBiddle.info - This repository will remain private until I externalize all private information and clean up the directory structure.
+	This is the website content and source for ThomasBiddle.info.
 </p>
 
 <b>TODO</b>
