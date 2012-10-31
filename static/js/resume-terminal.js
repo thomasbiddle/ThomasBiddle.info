@@ -1,10 +1,10 @@
-var inMail = false;
-var username = "recruiter";
-var boxname = "resume";
-var messageTime = 6;
-var shellStart = username + "@" + boxname + " ~> ";
-var shellInput = '<input type="text" id="terminalInputId" autocomplete="off"/>';
-var shellNew = shellStart + shellInput;
+var INMAIL = false;
+var USERNAME = "recruiter";
+var BOXNAME = "resume";
+var MESSAGETIME = 6;
+var SHELLSTART = USERNAME + "@" + BOXNAME + " ~> ";
+var SHELLINPUT = '<input type="text" id="terminalInputId" autocomplete="off"/>';
+var SHELLNEW = SHELLSTART + SHELLINPUT;
 
 function messageTimer() {
     document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
@@ -14,15 +14,15 @@ function messageTimer() {
     setTerminal();
 }
 function resetVars() {
-    shellStart = username + "@" + boxname + " ~> ";
-    shellNew = shellStart + shellInput;
+    SHELLSTART = USERNAME + "@" + BOXNAME + " ~> ";
+    SHELLNEW = SHELLSTART + SHELLINPUT;
 }
 function returnKey(evt) {
     var evt  = (evt) ? evt : ((event) ? event : null);
  
     if (evt.keyCode == 13)
     {
-        if (inMail)
+        if (INMAIL)
             printMail(document.getElementById('terminalInputId').value);
         else printOutput(document.getElementById('terminalInputId').value);
     }
@@ -35,7 +35,7 @@ function addInput( x ) {
     document.getElementById('terminalEmu').innerHTML = currentText() + x;
 }
 function setTerminal() {
-    addInput(shellNew);
+    addInput(SHELLNEW);
     document.getElementById('terminalInputId').focus();
 }
 function loadTerminal( x ) {
@@ -53,11 +53,11 @@ function startEmu() {
     document.getElementById('terminalEmu').innerHTML = "";
     
     addInput("</br></br></br>");
-    addInput(shellStart);
+    addInput(SHELLSTART);
     addInput("</br>");
     addInput("Loading Resume_Thomas_Biddle ..");
     loadTerminal(10);
-    setTimeout(messageTimer,messageTime*1000);
+    setTimeout(messageTimer,MESSAGETIME*1000);
 }
 function printOutput(terminalInput) {
     if (terminalInput == "about") {
@@ -172,14 +172,14 @@ function printOutput(terminalInput) {
     
     /* Some extra easter egg goodies */
     else if (terminalInput == "mail") {
-        inMail = true;
+        INMAIL = true;
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput("mail");
         addInput("</br></br>");
         addInput("Mail version 5.6 6/1/95. Type '?' or 'help' for a list of commands.</br>");
         addInput("/var/spool/mail/recruiter: 1 message</br>");
         addInput(">  1 ThomasBiddle@resume Sat 2/11/2011 20:54 Subj: 'Hello there!'</br>");
-        shellNew = "& " + shellInput;
+        SHELLNEW = "& " + SHELLINPUT;
         addInput("</br>");
         setTerminal();
     }
@@ -197,8 +197,8 @@ function printOutput(terminalInput) {
         }
         else {
             if (terminalInput.substring(3,terminalInput.length).length != 0)
-                username = terminalInput.substring(3,terminalInput.length);
-            else addInput(boxname + "</br>");
+                USERNAME = terminalInput.substring(3,terminalInput.length);
+            else addInput(BOXNAME + "</br>");
         }
         resetVars();
         setTerminal();
@@ -208,8 +208,8 @@ function printOutput(terminalInput) {
         addInput(terminalInput);
         addInput("</br>");
         if (terminalInput.substring(9,terminalInput.length).length != 0) {
-                boxname = terminalInput.substring(9,terminalInput.length);
-                addInput("Message from root@" + boxname + ": Hey, what's going on here!?</br>");
+                BOXNAME = terminalInput.substring(9,terminalInput.length);
+                addInput("Message from root@" + BOXNAME + ": Hey, what's going on here!?</br>");
         }
         else addInput("Hostname cannot be empty.</br>");
         addInput("</br>");
@@ -285,10 +285,10 @@ function printOutput(terminalInput) {
 }
 function printMail(terminalInput) {
     if ( (terminalInput == "quit") || (terminalInput == "home") || (terminalInput == "end") ) {
-        inMail = false;
+        INMAIL = false;
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput("quit");
-        shellNew = shellStart + shellInput;
+        SHELLNEW = SHELLSTART + SHELLINPUT;
         addInput("</br>");
         setTerminal();
     }
@@ -299,7 +299,7 @@ function printMail(terminalInput) {
         addInput("Mail version 5.6 6/1/95. Type '?' or 'help' for a list of commands.</br>");
         addInput("/var/spool/mail/recruiter: 1 message</br>");
         addInput(">  1 ThomasBiddle@resume Sat 2/11/2011 20:54 Subj: 'Hello there!'</br>");
-        shellNew = "& " + shellInput;
+        SHELLNEW = "& " + SHELLINPUT;
         addInput("</br>");
         setTerminal();
     }
