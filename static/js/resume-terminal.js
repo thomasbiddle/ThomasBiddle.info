@@ -303,8 +303,11 @@
 			{
 				document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
 				addInput(terminalInput);
-				addInput("</br>");
-				addInput(terminalInput + ": command not found - Type 'help' for a list of commands.</br>");
+				if ( terminalInput.length > 0 )
+				{
+					addInput("</br>");
+					addInput(terminalInput + ": command not found - Type 'help' for a list of commands.</br>");
+				}
 				addInput("</br>");
 				setTerminal();
 			}
