@@ -1,3 +1,6 @@
+/*global addInput */
+/*jslint browser:true */
+
 var INMAIL = false,                                                                 // Boolean for if we are in the "mail" application.
     USERNAME = "recruiter",                                                         // The username string used in the terminal prompt.
     BOXNAME = "resume",                                                             // The hostname string used in the terminal prompt.
@@ -6,7 +9,14 @@ var INMAIL = false,                                                             
     SHELLINPUT = '<input type="text" id="terminalInputId" autocomplete="off"/>',    // The terminals input box.
     SHELLNEW = SHELLSTART + SHELLINPUT;                                             // The terminal prompt and the input box, so we can change the prompt.
 
+
+function setTerminal() {
+    "use strict";
+    addInput(SHELLNEW);
+    document.getElementById('terminalInputId').focus();
+}
 function messageTimer() {
+    "use strict";
     document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
     addInput("</br></br>");
     addInput("You have new mail waiting for you in /var/spool/mail/recruiter </br>");
@@ -14,55 +24,34 @@ function messageTimer() {
     setTerminal();
 }
 function resetVars() {
+    "use strict";
     SHELLSTART = USERNAME + "@" + BOXNAME + " ~> ";
     SHELLNEW = SHELLSTART + SHELLINPUT;
 }
-function returnKey(evt) {
-    var evt  = (evt) ? evt : ((event) ? event : null);
- 
-    if (evt.keyCode == 13)
-    {
-        if (INMAIL) {
-            printMail(document.getElementById('terminalInputId').value);
-        } else {
-            printOutput(document.getElementById('terminalInputId').value);
-        }
-    }
-}
 function currentText() {
-    x = document.getElementById('terminalEmu').innerHTML;
+    "use strict";
+    var x = document.getElementById('terminalEmu').innerHTML;
     return x;
 }
-function addInput( x ) {
+function addInput(x) {
+    "use strict";
     document.getElementById('terminalEmu').innerHTML = currentText() + x;
 }
-function setTerminal() {
-    addInput(SHELLNEW);
-    document.getElementById('terminalInputId').focus();
-}
-function loadTerminal(x) {
-    for (var i=0; i<x; i++) setTimeout("addInput('.')",i*500);
-    setTimeout(function() { 
-        addInput("</br>");
-        addInput("Parsing File </br>");
-        addInput("Moving file to /usr/bin </br>");
-        addInput("File Status: [Loaded]</br></br>");
-        addInput("Thomas Biddle's Resume is ready for use. Enter 'help' for a list of commands.</br>");
-        setTerminal(); 
-    }, x*510);
-}
 function startEmu() {
+    "use strict";
     document.getElementById('terminalEmu').innerHTML = "";
-    
-    addInput("</br></br></br>");
-    addInput(SHELLSTART);
     addInput("</br>");
-    addInput("Loading Resume_Thomas_Biddle ..");
-    loadTerminal(10);
-    setTimeout(messageTimer,MESSAGETIME*1000);
+    addInput("</br>");
+    addInput("ThomasBiddleResume 1.2</br></br>");
+    addInput("Welcome!</br></br>");
+    addInput("   * Project URL: https://github.com/thomasbiddle/ThomasBiddle.info</br></br>");
+    addInput("Enter 'help' for a list of available commands.</br>");
+    setTerminal();
+    setTimeout(messageTimer, MESSAGETIME * 1000);
 }
 function printOutput(terminalInput) {
-    if (terminalInput == "about") {
+    "use strict";
+    if (terminalInput === "about") {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput("about");
         addInput("</br></br>");
@@ -82,7 +71,7 @@ function printOutput(terminalInput) {
         addInput("Java, C++, Javascript, Linux, Android</br>");
         addInput("</br>");
         setTerminal();
-    } else if (terminalInput == "education") {
+    } else if (terminalInput === "education") {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput("education");
         addInput("</br></br>");
@@ -96,7 +85,7 @@ function printOutput(terminalInput) {
         addInput("Enrolled in Honors and Advanced Placement (AP) courses. Entire senior year was deciated to the Post Secondary Enrollment Options Program (PSEOP)</br>");
         addInput("</br>");
         setTerminal();
-    } else if (terminalInput == "workhistory") {
+    } else if (terminalInput === "workhistory") {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput("workhistory");
         addInput("</br></br>");
@@ -104,7 +93,7 @@ function printOutput(terminalInput) {
         addInput("Software Engineer Intern</br>");
         addInput("July 2012 - Present</br>");
         addInput("Working in the Los Ops Development Team.</br>");
-        addInput("</br>");              
+        addInput("</br>");
         addInput("Seapine Software</br>");
         addInput("Software Development Co-op</br>");
         addInput("January 2012 - May 2012</br>");
@@ -131,7 +120,7 @@ function printOutput(terminalInput) {
         addInput("Served a multitude of customers as this was the most profitable franchise in the company during peak seasons, practiced teamwork with fellow colleagues, and worked the cash register.</br>");
         addInput("</br>");
         setTerminal();
-    } else if (terminalInput == "recommendations") {
+    } else if (terminalInput === "recommendations") {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput("recommendations");
         addInput("</br></br>");
@@ -144,7 +133,7 @@ function printOutput(terminalInput) {
         addInput("“Thomas J Biddle is a creative worker. He doesn't just do the job - he looks for ways to do things more efficiently. His ingenuity and professionalism are evident in his company VPSInfinity and all his ventures. I highly recommend him.”</br>");
         addInput("</br>");
         setTerminal();
-    } else if (terminalInput == "portfolio") {
+    } else if (terminalInput === "portfolio") {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput("portfolio");
         addInput("</br></br>");
@@ -153,8 +142,7 @@ function printOutput(terminalInput) {
         addInput("At the above address, you will find a collection of my independent projects, such as 'Project Euler' problems, as well as Android Applications. I also have a few small school assignments that I found to be interesting.</br>");
         addInput("</br>");
         setTerminal();
-        
-    } else if ( (terminalInput == "help") || (terminalInput == "?") ) {
+    } else if ((terminalInput === "help") || (terminalInput === "?")) {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput("help");
         addInput("</br></br>");
@@ -165,7 +153,7 @@ function printOutput(terminalInput) {
         addInput("   ***********</br>");
         addInput("</br>");
         setTerminal();
-    } else if (terminalInput == "mail") {
+    } else if (terminalInput === "mail") {
         INMAIL = true;
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput("mail");
@@ -176,76 +164,79 @@ function printOutput(terminalInput) {
         SHELLNEW = "& " + SHELLINPUT;
         addInput("</br>");
         setTerminal();
-    } else if (terminalInput == "clear") {
+    } else if (terminalInput === "clear") {
         document.getElementById("terminalEmu").innerHTML = "";
         setTerminal();
-    } else if ( terminalInput.substring(0,2) == "su" && (terminalInput.substring(0,4) != "sudo") ) {
+    } else if (terminalInput.substring(0, 2) === "su" && (terminalInput.substring(0, 4) !== "sudo")) {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput(terminalInput);
         addInput("</br>");
-        if ( (terminalInput.substring(3,7) == "root") || (terminalInput.substring(3,8) == "admin") || (terminalInput.substring(3,16) == "administrator") ) {
+        if ((terminalInput.substring(3, 7) === "root") || (terminalInput.substring(3, 8) === "admin") || (terminalInput.substring(3, 16) === "administrator")) {
             addInput("Seriously, it's not that easy.</br>");
         } else {
-            if (terminalInput.substring(3,terminalInput.length).length != 0) {
-                USERNAME = terminalInput.substring(3,terminalInput.length);
+            if (terminalInput.substring(3, terminalInput.length).length !== 0) {
+                USERNAME = terminalInput.substring(3, terminalInput.length);
             } else {
                 addInput(BOXNAME + "</br>");
             }
         }
         resetVars();
         setTerminal();
-    } else if (terminalInput.substring(0,8) == "hostname") {
+    } else if (terminalInput.substring(0, 8) === "hostname") {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput(terminalInput);
         addInput("</br>");
-        if (terminalInput.substring(9,terminalInput.length).length != 0) {
-                BOXNAME = terminalInput.substring(9,terminalInput.length);
-                addInput("Message from root@" + BOXNAME + ": Hey, what's going on here!?</br>");
-        } else addInput("Hostname cannot be empty.</br>");
+        if (terminalInput.substring(9, terminalInput.length).length !== 0) {
+            BOXNAME = terminalInput.substring(9, terminalInput.length);
+            addInput("Message from root@" + BOXNAME + ": Hey, what's going on here!?</br>");
+        } else {
+            addInput("Hostname cannot be empty.</br>");
+        }
         addInput("</br>");
         resetVars();
         setTerminal();
-    } else if (terminalInput.substring(0,2) == "ls") {
+    } else if (terminalInput.substring(0, 2) === "ls") {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput(terminalInput);
         addInput("<pre>passw0rds.txt\nskynet.py\n</pre>");
         setTerminal();
-    } else if ( (terminalInput.substring(0,4) == "sudo" ) ) {
+    } else if ((terminalInput.substring(0, 4) === "sudo")) {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput(terminalInput);
         addInput("</br>");
         addInput("Did you really think it was going to be that easy?</br>");
         setTerminal();
-    } else if ( (terminalInput.substring(0,2) == "cp" ) || (terminalInput.substring(0,2) == "mv" ) || (terminalInput.substring(0,4) == "wget" ) || (terminalInput.substring(0,4) == "grep" ) || (terminalInput.substring(0,3) == "gcc") || (terminalInput.substring(0,3) == "c++") || (terminalInput.substring(0,3) == "tar") || (terminalInput.substring(0,4) == "gzip")|| (terminalInput.substring(0,3) == "ssh") || (terminalInput.substring(0,5) == "bzip2") || (terminalInput.substring(0,5) == "rsync") || (terminalInput.substring(0,3) == "sed") || (terminalInput.substring(0,3) == "rpm") || (terminalInput.substring(0,3) == "yum") || (terminalInput.substring(0,2) == "cd") ) {
+    } else if ((terminalInput.substring(0, 2) === "cp") || (terminalInput.substring(0, 2) === "mv") || (terminalInput.substring(0, 4) === "wget") || (terminalInput.substring(0, 4) === "grep") || (terminalInput.substring(0, 3) === "gcc") || (terminalInput.substring(0, 3) === "c++") || (terminalInput.substring(0, 3) === "tar") || (terminalInput.substring(0, 4) === "gzip") || (terminalInput.substring(0, 3) === "ssh") || (terminalInput.substring(0, 5) === "bzip2") || (terminalInput.substring(0, 5) === "rsync") || (terminalInput.substring(0, 3) === "sed") || (terminalInput.substring(0, 3) === "rpm") || (terminalInput.substring(0, 3) === "yum") || (terminalInput.substring(0, 2) === "cd")) {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput(terminalInput);
         addInput("</br>");
         addInput("Access denied.</br>");
         setTerminal();
-    } else if ( (terminalInput.substring(0,4) == "nano") || (terminalInput.substring(0,3) == "vi") ) {
+    } else if ((terminalInput.substring(0, 4) === "nano") || (terminalInput.substring(0, 3) === "vi")) {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput(terminalInput);
         addInput("</br>");
-        if (terminalInput.substring(0,4) == "nano")
-        addInput(terminalInput.substring(0,4) + " is not installed on this machine. Try using 'cat' to read the contents of a file. </br>");
-        if (terminalInput.substring(0,3) == "vi")
-        addInput(terminalInput.substring(0,3) + " is not installed on this machine. Try using 'cat' to read the contents of a file. </br>");
+        if (terminalInput.substring(0, 4) === "nano") {
+            addInput(terminalInput.substring(0, 4) + " is not installed on this machine. Try using 'cat' to read the contents of a file. </br>");
+        } else if (terminalInput.substring(0, 3) === "vi") {
+            addInput(terminalInput.substring(0, 3) + " is not installed on this machine. Try using 'cat' to read the contents of a file. </br>");
+        }
         setTerminal();
-    } else if ( terminalInput.substring(0,3) == "cat" ) {
+    } else if (terminalInput.substring(0, 3) === "cat") {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput(terminalInput);
         addInput("</br>");
-        if (terminalInput.substring(4,8) == "pass") {
+        if (terminalInput.substring(4, 8) === "pass") {
             addInput("<pre>benken0bi\nqwerty\npassword123</pre>");
-        } else if (terminalInput.substring(4,7) == "sky") {
+        } else if (terminalInput.substring(4, 7) === "sky") {
             addInput("<pre>def getSolutionCosts(navigationCode):\n\tfuelStopCost=15\n\textraComputationCost=8\n\tthisAlgorithmBecomingSkynetCost=999999999\n\twaterCrossingCost=45</pre>");
-        } else if (terminalInput.substring(4,5) == "/") {
-            addInput(terminalInput.substring(4,terminalInput.length) + " is not a file.</br>");
-        } else if (terminalInput.substring(4,terminalInput.length) == "") {
+        } else if (terminalInput.substring(4, 5) === "/") {
+            addInput(terminalInput.substring(4, terminalInput.length) + " is not a file.</br>");
+        } else if (terminalInput.substring(4, terminalInput.length) === "") {
             addInput("Please enter a filename (e.g. cat MyFile.txt)</br>");
         }
         setTerminal();
-    } else if ( (terminalInput == "passw0rds.txt") || (terminalInput == "skynet.cpp") ) {
+    } else if ((terminalInput === "passw0rds.txt") || (terminalInput === "skynet.cpp")) {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput(terminalInput);
         addInput("</br>");
@@ -255,7 +246,7 @@ function printOutput(terminalInput) {
     } else {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput(terminalInput);
-        if ( terminalInput.length > 0 ) {
+        if (terminalInput.length > 0) {
             addInput("</br>");
             addInput(terminalInput + ": command not found - Type 'help' for a list of commands.</br>");
         }
@@ -264,14 +255,15 @@ function printOutput(terminalInput) {
     }
 }
 function printMail(terminalInput) {
-    if ( (terminalInput == "quit") || (terminalInput == "home") || (terminalInput == "end") ) {
+    "use strict";
+    if ((terminalInput === "quit") || (terminalInput === "home") || (terminalInput === "end")) {
         INMAIL = false;
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput("quit");
         SHELLNEW = SHELLSTART + SHELLINPUT;
         addInput("</br>");
         setTerminal();
-    } else if (terminalInput == "inbox") {
+    } else if (terminalInput === "inbox") {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput("inbox");
         addInput("</br></br>");
@@ -281,7 +273,7 @@ function printMail(terminalInput) {
         SHELLNEW = "& " + SHELLINPUT;
         addInput("</br>");
         setTerminal();
-    } else if (terminalInput == "read") {
+    } else if (terminalInput === "read") {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput(terminalInput);
         addInput("</br>");
@@ -293,7 +285,7 @@ function printMail(terminalInput) {
         addInput("Hello! I'm so glad to see you have found my message here. I hope you're having a fun time navigating through my resume; as I write the code for it now I am having an absolute blast thinking of new things to implement - if you play around a bit, I'm sure you'll find them (I think there's actually more easter eggs than there is information about myself, go figure).</br></br>I can only assume you've read through the information I've provided about myself earlier so I won't bother repeating myself here - but what I will tell you is, you simply won't find someone more enthusiastic about this field. I'm not here to simply get a job and hack away at a desk; I <s>enjoy</s> love creating and developing new things; I keep a list of ideas for new projects that I would love to jump on, and needless to say - it's growing faster than I can cross things off.</br></br>Needless to say I'm passionate about development and am always seeking new opportunities to learn more and truly apply myself - and I'd love to do so by working for your company.");
         addInput("</br>");
         setTerminal();
-    } else if (terminalInput == "?" || terminalInput == "help") {
+    } else if (terminalInput === "?" || terminalInput === "help") {
         document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
         addInput(terminalInput);
         addInput("</br></br>");
@@ -303,7 +295,7 @@ function printMail(terminalInput) {
         addInput("<pre>read\t-\tRead any unopened messages.\ninbox\t-\tList the system's messages.\nquit\t-\tQuit the mail application.</pre>");
         addInput("   ***********</br></br>");
         setTerminal();
-    } else if (terminalInput == "clear") {
+    } else if (terminalInput === "clear") {
         document.getElementById("terminalEmu").innerHTML = "";
         setTerminal();
     } else {
@@ -313,6 +305,24 @@ function printMail(terminalInput) {
         addInput(terminalInput + ": mail does not support that command - Type '?' or 'help' for a list of commands. Type 'quit' to quit.</br>");
         addInput("</br>");
         setTerminal();
+    }
+}
+
+function returnKey(evt) {
+    "use strict";
+    if (!evt) {
+        if (event) {
+            evt = event;
+        } else {
+            evt = null;
+        }
+    }
+    if (evt.keyCode === 13) {
+        if (INMAIL) {
+            printMail(document.getElementById('terminalInputId').value);
+        } else {
+            printOutput(document.getElementById('terminalInputId').value);
+        }
     }
 }
 
