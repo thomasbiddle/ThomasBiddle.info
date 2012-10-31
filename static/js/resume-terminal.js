@@ -1,10 +1,10 @@
-var INMAIL = false;
-var USERNAME = "recruiter";
-var BOXNAME = "resume";
-var MESSAGETIME = 6;
-var SHELLSTART = USERNAME + "@" + BOXNAME + " ~> ";
-var SHELLINPUT = '<input type="text" id="terminalInputId" autocomplete="off"/>';
-var SHELLNEW = SHELLSTART + SHELLINPUT;
+var INMAIL = false,                                                                 // Boolean for if we are in the "mail" application.
+    USERNAME = "recruiter",                                                         // The username string used in the terminal prompt.
+    BOXNAME = "resume",                                                             // The hostname string used in the terminal prompt.
+    MESSAGETIME = 6,                                                                // The "loading" time in seconds.
+    SHELLSTART = USERNAME + "@" + BOXNAME + " ~> ",                                 // The string for the terminal prompt.
+    SHELLINPUT = '<input type="text" id="terminalInputId" autocomplete="off"/>',    // The terminals input box.
+    SHELLNEW = SHELLSTART + SHELLINPUT;                                             // The terminal prompt and the input box, so we can change the prompt.
 
 function messageTimer() {
     document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
@@ -40,7 +40,7 @@ function setTerminal() {
     addInput(SHELLNEW);
     document.getElementById('terminalInputId').focus();
 }
-function loadTerminal( x ) {
+function loadTerminal(x) {
     for (var i=0; i<x; i++) setTimeout("addInput('.')",i*500);
     setTimeout(function() { 
         addInput("</br>");
