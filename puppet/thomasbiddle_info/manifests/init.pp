@@ -33,6 +33,6 @@ class thomasbiddle_info {
     ensure    => present,
     command   => 'bash /srv/www/update_thomasbiddle_info.sh',
     user      => www-data,
-    minute    => */1,
+    minute    => '*/1',
   }
 }
