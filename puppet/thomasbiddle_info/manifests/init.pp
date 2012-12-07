@@ -8,15 +8,15 @@ class thomasbiddle_info {
   }
 
   file { '/etc/apache2/sites-enabled/thomasbiddle.info':
-    ensure => link,
-    target => '/etc/apache2/sites-available/thomasbiddle.info',
+    ensure  => link,
+    target  => '/etc/apache2/sites-available/thomasbiddle.info',
     require => File['/etc/apache2/sites-available/thomasbiddle.info'],
   }
 
   file { '/srv/www/ThomasBiddle.info':
-    ensure => directory,
-    owner => www-data,
-    group => www-data,
+    ensure  => directory,
+    owner   => www-data,
+    group   => www-data,
     recurse => true,
   }
 
@@ -25,8 +25,8 @@ class thomasbiddle_info {
     ensure => present,
     owner  => www-data,
     group  => www-data,
-    mode   => 0447,
-    source => "puppet:///modules/thomasbiddle_info/update_thomasbiddle_info.sh",
+    mode   => '0447',
+    source => 'puppet:///modules/thomasbiddle_info/update_thomasbiddle_info.sh',
   }
 
   cron { 'deploy_thomasbiddle_info':
