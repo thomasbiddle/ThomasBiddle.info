@@ -22,7 +22,7 @@ class thomasbiddle_info {
   }
 
   # Bash script will git clone/git pull to deploy the project.
-  file { 'update_thomasbiddle_info.sh':
+  file { '/srv/www/update_thomasbiddle_info.sh':
     ensure => present,
     source => "puppet:///modules/thomasbiddle_info/update_thomasbiddle_info.sh",
   }
