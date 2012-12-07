@@ -23,6 +23,9 @@ class thomasbiddle_info {
   # Bash script will git clone/git pull to deploy the project.
   file { '/srv/www/update_thomasbiddle_info.sh':
     ensure => present,
+    owner  => www-data,
+    group  => www-data,
+    mode   => 0447,
     source => "puppet:///modules/thomasbiddle_info/update_thomasbiddle_info.sh",
   }
 
