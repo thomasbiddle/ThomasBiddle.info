@@ -14,18 +14,17 @@ class thomasbiddle_info {
     require => File['/etc/apache2/sites-available/thomasbiddle.info'],
   }
 
-  # Ensure the file structure is in place.
-  file { '/srv/':
+  file { '/srv/www/ThomasBiddle.info':
     ensure => directory,
+    owner => www-data,
+    group => www-data,
+    recurse => true,
   }
-  file { '/srv/www/':
-    ensure  => directory,
-    require => File['/srv/'],
-  }
-  file { '/srv/www/thomasbiddle.info':
-    ensure  => link,
-    target  => '/home/tj/Sites/ThomasBiddle.info/', # Hard coding this for now.
-    require => File['/srv/www/'],
+
+  # Bash script will git clone/git pull to deploy the project.
+  file { 'update_thomasbiddle_info.sh':
+    ensure => present,
+    source => "puppet:///modules/thomasbiddle_info/update_thomasbiddle_info.sh",
   }
 
 }
