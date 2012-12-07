@@ -29,4 +29,10 @@ class thomasbiddle_info {
     source => "puppet:///modules/thomasbiddle_info/update_thomasbiddle_info.sh",
   }
 
+  cron { 'deploy_thomasbiddle_info':
+    ensure    => present,
+    command   => 'bash /srv/www/update_thomasbiddle_info.sh',
+    user      => www-data,
+    minute    => */1,
+  }
 }
