@@ -34,5 +34,6 @@ class thomasbiddle_info {
     command   => 'bash /srv/www/update_thomasbiddle_info.sh',
     user      => www-data,
     minute    => '*/1',
+    require   => File['/srv/www/update_thomasbiddle_info.sh'],
   }
 }
