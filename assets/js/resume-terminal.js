@@ -6,22 +6,22 @@ var INMAIL = false,                                                             
     BOXNAME = "resume",                                                             // The hostname string used in the terminal prompt.
     MESSAGETIME = 6,                                                                // The "loading" time in seconds.
     SHELLSTART = USERNAME + "@" + BOXNAME + " ~> ",                                 // The string for the terminal prompt.
-    SHELLINPUT = '<input type="text" id="terminalInputId" autocomplete="off"/>',    // The terminals input box.
+    SHELLINPUT = '<input type="text" id="terminal-input" autocomplete="off"/>',    // The terminals input box.
     SHELLNEW = SHELLSTART + SHELLINPUT;                                             // The terminal prompt and the input box, so we can change the prompt.
 
 
-function setTerminal() {
+function reset_terminal() {
     "use strict";
     echo(SHELLNEW);
-    document.getElementById('terminalInputId').focus();
+    document.getElementById('terminal-input').focus();
 }
-function messageTimer() {
+function mail_timer() {
     "use strict";
-    document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
+    document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
     echo('');
     echo("You have new mail waiting for you in /var/spool/mail/recruiter ");
     echo('');
-    setTerminal();
+    reset_terminal();
 }
 function resetVars() {
     "use strict";
@@ -30,16 +30,16 @@ function resetVars() {
 }
 function currentText() {
     "use strict";
-    var x = document.getElementById('terminalEmu').innerHTML;
+    var x = document.getElementById('terminal').innerHTML;
     return x;
 }
 function echo(x) {
     "use strict";
-    document.getElementById('terminalEmu').innerHTML = currentText() + x + "</br>";
+    document.getElementById('terminal').innerHTML = currentText() + x + "</br>";
 }
-function startEmu() {
+function start_terminal() {
     "use strict";
-    document.getElementById('terminalEmu').innerHTML = "";
+    document.getElementById('terminal').innerHTML = "";
     echo('');
     echo('');
     echo("ThomasBiddleResume 1.2");
@@ -49,13 +49,13 @@ function startEmu() {
     echo("   * Project URL: https://github.com/thomasbiddle/ThomasBiddle.info");
     echo('');
     echo("Enter 'help' for a list of available commands.");
-    setTerminal();
-    setTimeout(messageTimer, MESSAGETIME * 1000);
+    reset_terminal();
+    setTimeout(mail_timer, MESSAGETIME * 1000);
 }
-function printOutput(terminalInput) {
+function command(input) {
     "use strict";
-    if (terminalInput === "about") {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
+    if (input === "about") {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
         echo("about");
         echo('');
         echo("Last Name: Biddle");
@@ -73,9 +73,9 @@ function printOutput(terminalInput) {
         echo("Specialties:");
         echo("Java, C++, Javascript, Linux, Android");
         echo('');
-        setTerminal();
-    } else if (terminalInput === "education") {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
+        reset_terminal();
+    } else if (input === "education") {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
         echo("education");
         echo('');
         echo("University of Cincinnati");
@@ -87,9 +87,9 @@ function printOutput(terminalInput) {
         echo('');
         echo("Enrolled in Honors and Advanced Placement (AP) courses. Entire senior year was deciated to the Post Secondary Enrollment Options Program (PSEOP)");
         echo('');
-        setTerminal();
-    } else if (terminalInput === "workhistory") {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
+        reset_terminal();
+    } else if (input === "workhistory") {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
         echo("workhistory");
         echo('');
         echo("Inflection, LLC");
@@ -128,9 +128,9 @@ function printOutput(terminalInput) {
         echo("November 2007 - April 2009");
         echo("Served a multitude of customers as this was the most profitable franchise in the company during peak seasons, practiced teamwork with fellow colleagues, and worked the cash register.");
         echo('');
-        setTerminal();
-    } else if (terminalInput === "recommendations") {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
+        reset_terminal();
+    } else if (input === "recommendations") {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
         echo("recommendations");
         echo('');
         echo("Samual Stine, Web Engineer & Founder, SeerVirtual, LLC. says...");
@@ -143,18 +143,18 @@ function printOutput(terminalInput) {
         echo('');
         echo("“Thomas J Biddle is a creative worker. He doesn't just do the job - he looks for ways to do things more efficiently. His ingenuity and professionalism are evident in his company VPSInfinity and all his ventures. I highly recommend him.”");
         echo('');
-        setTerminal();
-    } else if (terminalInput === "portfolio") {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
+        reset_terminal();
+    } else if (input === "portfolio") {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
         echo("portfolio");
         echo('');
         echo("As my experience in Computer Science and programming continues to grow, I will be adding as much to my portfolio as possible. As a supporter of open source communities, I plan to release the source code for any personal projects I take on. The majority, if not all, of my independent projects can be found at: <span class='inLink'><a href='http://www.ThomasBiddle.com/#work'>http://www.ThomasBiddle.com/#work</a></span>");
         echo('');
         echo("At the above address, you will find a collection of my independent projects, such as 'Project Euler' problems, as well as Android Applications. I also have a few small school assignments that I found to be interesting.");
         echo('');
-        setTerminal();
-    } else if ((terminalInput === "help") || (terminalInput === "?")) {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
+        reset_terminal();
+    } else if ((input === "help") || (input === "?")) {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
         echo("help");
         echo('');
         echo("The following commands are supported:");
@@ -163,10 +163,10 @@ function printOutput(terminalInput) {
         echo("<pre>about\t\t-\tGeneral information about 'Thomas Biddle'.\neducation\t-\tPast and current education information.\nworkhistory\t-\tRetrieve an up-to-date history of employment.\nportfolio\t-\tProject portfolio and code snippets.\nrecommendations\t-\tRecommendations for Thomas from others.\nmail\t\t-\tRead the system's messages.</pre>");
         echo("   ***********");
         echo('');
-        setTerminal();
-    } else if (terminalInput === "mail") {
+        reset_terminal();
+    } else if (input === "mail") {
         INMAIL = true;
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
         echo("mail");
         echo('');
         echo("Mail version 5.6 6/1/95. Type '?' or 'help' for a list of commands.");
@@ -174,108 +174,108 @@ function printOutput(terminalInput) {
         echo(">  1 ThomasBiddle@resume Sat 2/11/2011 20:54 Subj: 'Hello there!'");
         SHELLNEW = "& " + SHELLINPUT;
         echo('');
-        setTerminal();
-    } else if (terminalInput === "clear") {
-        document.getElementById("terminalEmu").innerHTML = "";
-        setTerminal();
-    } else if (terminalInput.substring(0, 2) === "su" && (terminalInput.substring(0, 4) !== "sudo")) {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
-        echo(terminalInput);
+        reset_terminal();
+    } else if (input === "clear") {
+        document.getElementById("terminal").innerHTML = "";
+        reset_terminal();
+    } else if (input.substring(0, 2) === "su" && (input.substring(0, 4) !== "sudo")) {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
+        echo(input);
         echo('');
-        if ((terminalInput.substring(3, 7) === "root") || (terminalInput.substring(3, 8) === "admin") || (terminalInput.substring(3, 16) === "administrator")) {
+        if ((input.substring(3, 7) === "root") || (input.substring(3, 8) === "admin") || (input.substring(3, 16) === "administrator")) {
             echo("Seriously, it's not that easy.");
         } else {
-            if (terminalInput.substring(3, terminalInput.length).length !== 0) {
-                USERNAME = terminalInput.substring(3, terminalInput.length);
+            if (input.substring(3, input.length).length !== 0) {
+                USERNAME = input.substring(3, input.length);
             } else {
                 echo(BOXNAME + "");
             }
         }
         resetVars();
-        setTerminal();
-    } else if (terminalInput.substring(0, 8) === "hostname") {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
-        echo(terminalInput);
+        reset_terminal();
+    } else if (input.substring(0, 8) === "hostname") {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
+        echo(input);
         echo('');
-        if (terminalInput.substring(9, terminalInput.length).length !== 0) {
-            BOXNAME = terminalInput.substring(9, terminalInput.length);
+        if (input.substring(9, input.length).length !== 0) {
+            BOXNAME = input.substring(9, input.length);
             echo("Message from root@" + BOXNAME + ": Hey, what's going on here!?");
         } else {
             echo("Hostname cannot be empty.");
         }
         echo('');
         resetVars();
-        setTerminal();
-    } else if (terminalInput.substring(0, 2) === "ls") {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
-        echo(terminalInput);
+        reset_terminal();
+    } else if (input.substring(0, 2) === "ls") {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
+        echo(input);
         echo("<pre>passw0rds.txt\nskynet.py\n</pre>");
-        setTerminal();
-    } else if ((terminalInput.substring(0, 4) === "sudo")) {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
-        echo(terminalInput);
+        reset_terminal();
+    } else if ((input.substring(0, 4) === "sudo")) {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
+        echo(input);
         echo('');
         echo("Did you really think it was going to be that easy?");
-        setTerminal();
-    } else if ((terminalInput.substring(0, 2) === "cp") || (terminalInput.substring(0, 2) === "mv") || (terminalInput.substring(0, 4) === "wget") || (terminalInput.substring(0, 4) === "grep") || (terminalInput.substring(0, 3) === "gcc") || (terminalInput.substring(0, 3) === "c++") || (terminalInput.substring(0, 3) === "tar") || (terminalInput.substring(0, 4) === "gzip") || (terminalInput.substring(0, 3) === "ssh") || (terminalInput.substring(0, 5) === "bzip2") || (terminalInput.substring(0, 5) === "rsync") || (terminalInput.substring(0, 3) === "sed") || (terminalInput.substring(0, 3) === "rpm") || (terminalInput.substring(0, 3) === "yum") || (terminalInput.substring(0, 2) === "cd")) {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
-        echo(terminalInput);
+        reset_terminal();
+    } else if ((input.substring(0, 2) === "cp") || (input.substring(0, 2) === "mv") || (input.substring(0, 4) === "wget") || (input.substring(0, 4) === "grep") || (input.substring(0, 3) === "gcc") || (input.substring(0, 3) === "c++") || (input.substring(0, 3) === "tar") || (input.substring(0, 4) === "gzip") || (input.substring(0, 3) === "ssh") || (input.substring(0, 5) === "bzip2") || (input.substring(0, 5) === "rsync") || (input.substring(0, 3) === "sed") || (input.substring(0, 3) === "rpm") || (input.substring(0, 3) === "yum") || (input.substring(0, 2) === "cd")) {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
+        echo(input);
         echo('');
         echo("Access denied.");
-        setTerminal();
-    } else if ((terminalInput.substring(0, 4) === "nano") || (terminalInput.substring(0, 3) === "vi")) {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
-        echo(terminalInput);
+        reset_terminal();
+    } else if ((input.substring(0, 4) === "nano") || (input.substring(0, 3) === "vi")) {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
+        echo(input);
         echo('');
-        if (terminalInput.substring(0, 4) === "nano") {
-            echo(terminalInput.substring(0, 4) + " is not installed on this machine. Try using 'cat' to read the contents of a file. ");
-        } else if (terminalInput.substring(0, 3) === "vi") {
-            echo(terminalInput.substring(0, 3) + " is not installed on this machine. Try using 'cat' to read the contents of a file. ");
+        if (input.substring(0, 4) === "nano") {
+            echo(input.substring(0, 4) + " is not installed on this machine. Try using 'cat' to read the contents of a file. ");
+        } else if (input.substring(0, 3) === "vi") {
+            echo(input.substring(0, 3) + " is not installed on this machine. Try using 'cat' to read the contents of a file. ");
         }
-        setTerminal();
-    } else if (terminalInput.substring(0, 3) === "cat") {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
-        echo(terminalInput);
+        reset_terminal();
+    } else if (input.substring(0, 3) === "cat") {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
+        echo(input);
         echo('');
-        if (terminalInput.substring(4, 8) === "pass") {
+        if (input.substring(4, 8) === "pass") {
             echo("<pre>benken0bi\nqwerty\npassword123</pre>");
-        } else if (terminalInput.substring(4, 7) === "sky") {
+        } else if (input.substring(4, 7) === "sky") {
             echo("<pre>def getSolutionCosts(navigationCode):\n\tfuelStopCost=15\n\textraComputationCost=8\n\tthisAlgorithmBecomingSkynetCost=999999999\n\twaterCrossingCost=45</pre>");
-        } else if (terminalInput.substring(4, 5) === "/") {
-            echo(terminalInput.substring(4, terminalInput.length) + " is not a file.");
-        } else if (terminalInput.substring(4, terminalInput.length) === "") {
+        } else if (input.substring(4, 5) === "/") {
+            echo(input.substring(4, input.length) + " is not a file.");
+        } else if (input.substring(4, input.length) === "") {
             echo("Please enter a filename (e.g. cat MyFile.txt)");
         }
-        setTerminal();
-    } else if ((terminalInput === "passw0rds.txt") || (terminalInput === "skynet.cpp")) {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
-        echo(terminalInput);
+        reset_terminal();
+    } else if ((input === "passw0rds.txt") || (input === "skynet.cpp")) {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
+        echo(input);
         echo('');
-        echo(terminalInput + " is a text file. Try opening it with another command. ");
+        echo(input + " is a text file. Try opening it with another command. ");
         echo('');
-        setTerminal();
+        reset_terminal();
     } else {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
-        echo(terminalInput);
-        if (terminalInput.length > 0) {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
+        echo(input);
+        if (input.length > 0) {
             echo('');
-            echo(terminalInput + ": command not found - Type 'help' for a list of commands.");
+            echo(input + ": command not found - Type 'help' for a list of commands.");
         }
         echo('');
-        setTerminal();
+        reset_terminal();
     }
 }
-function printMail(terminalInput) {
+function mail_command(input) {
     "use strict";
-    if ((terminalInput === "quit") || (terminalInput === "home") || (terminalInput === "end")) {
+    if ((input === "quit") || (input === "home") || (input === "end")) {
         INMAIL = false;
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
         echo("quit");
         SHELLNEW = SHELLSTART + SHELLINPUT;
         echo('');
-        setTerminal();
-    } else if (terminalInput === "inbox") {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
+        reset_terminal();
+    } else if (input === "inbox") {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
         echo("inbox");
         echo('');
         echo("Mail version 5.6 6/1/95. Type '?' or 'help' for a list of commands.");
@@ -283,10 +283,10 @@ function printMail(terminalInput) {
         echo(">  1 ThomasBiddle@resume Sat 2/11/2011 20:54 Subj: 'Hello there!'");
         SHELLNEW = "& " + SHELLINPUT;
         echo('');
-        setTerminal();
-    } else if (terminalInput === "read") {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
-        echo(terminalInput);
+        reset_terminal();
+    } else if (input === "read") {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
+        echo(input);
         echo('');
         echo('');
         echo("Date: Sat, 2/11/2011 22:16 -0500");
@@ -299,27 +299,27 @@ function printMail(terminalInput) {
         echo('');
         echo("Needless to say I'm passionate about development and am always seeking new opportunities to learn more and truly apply myself - and I'd love to do so by working for your company.");
         echo('');
-        setTerminal();
-    } else if (terminalInput === "?" || terminalInput === "help") {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
-        echo(terminalInput);
+        reset_terminal();
+    } else if (input === "?" || input === "help") {
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
+        echo(input);
         echo('');
         echo("The mail application supports the following commands:");
         echo('');
         echo("   ***********");
         echo("<pre>read\t-\tRead any unopened messages.\ninbox\t-\tList the system's messages.\nquit\t-\tQuit the mail application.</pre>");
         echo("   ***********");
-        setTerminal();
-    } else if (terminalInput === "clear") {
-        document.getElementById("terminalEmu").innerHTML = "";
-        setTerminal();
+        reset_terminal();
+    } else if (input === "clear") {
+        document.getElementById("terminal").innerHTML = "";
+        reset_terminal();
     } else {
-        document.getElementById('terminalEmu').removeChild(document.getElementById('terminalInputId'));
-        echo(terminalInput);
+        document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
+        echo(input);
         echo('');
-        echo(terminalInput + ": mail does not support that command - Type '?' or 'help' for a list of commands. Type 'quit' to quit.");
+        echo(input + ": mail does not support that command - Type '?' or 'help' for a list of commands. Type 'quit' to quit.");
         echo('');
-        setTerminal();
+        reset_terminal();
     }
 }
 
@@ -334,9 +334,9 @@ function returnKey(evt) {
     }
     if (evt.keyCode === 13) {
         if (INMAIL) {
-            printMail(document.getElementById('terminalInputId').value);
+            mail_command(document.getElementById('terminal-input').value);
         } else {
-            printOutput(document.getElementById('terminalInputId').value);
+            command(document.getElementById('terminal-input').value);
         }
     }
 }

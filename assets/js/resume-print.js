@@ -17,14 +17,14 @@ function loadTerminalPrint() {
 */
 function echo(x) {
     "use strict";
-    document.getElementById('terminalEmu').innerHTML = document.getElementById('terminalEmu').innerHTML + x + "</br>";
+    document.getElementById('terminal').innerHTML = document.getElementById('terminal').innerHTML + x + "</br>";
 }
 /*
     Loading animation then call to print our info.
 */
 function startEmuPrint() {
     "use strict";
-    document.getElementById('terminalEmu').innerHTML = "";
+    document.getElementById('terminal').innerHTML = "";
     echo("recruiter@resume ~> ");
     loadTerminalPrint();
 }

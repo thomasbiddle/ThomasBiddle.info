@@ -58,14 +58,14 @@ function animateFade(lastTick, eid) {
 function removeDiv() {
     "use strict";
     setTimeout(document.getElementById('parentDiv').removeChild(document.getElementById('choosePath')), 1500);
-    setTimeout(document.getElementById('terminalEmu').style.height = 800, 1700);
+    setTimeout(document.getElementById('terminal').style.height = 800, 1700);
 }
 /*
     Add to the terminal div
 */
 function addInput(x) {
     "use strict";
-    document.getElementById('terminalEmu').innerHTML = document.getElementById('terminalEmu').innerHTML + x;
+    document.getElementById('terminal').innerHTML = document.getElementById('terminal').innerHTML + x;
 }
 /*
     Loading animation
@@ -73,6 +73,6 @@ function addInput(x) {
 function loadPage() {
     "use strict";
     addInput("</br>");
-    setTimeout(fade('terminalEmu'), 500);
+    setTimeout(fade('terminal'), 500);
     setTimeout(fade('choosePath'), 500);
 }

@@ -1,12 +1,19 @@
-body
-{
+body {
 	background-color:black;
 	color: white;
 	font-family: courier;
 	font-size: 14px;
 }
-input
-{
+
+#terminal {
+	width: 800px;
+	height: 200px;
+	border-style: solid;
+	border-width: 0px;
+	text-align: left;
+}
+
+#terminal-input {
 	font-family: courier;
 	font-size: 12px;
 	background-color: black;
@@ -16,22 +23,20 @@ input
 	height: 17px;
 	width: 550px;
 }
-a
-{
+
+a {
 	color: white;
 	text-decoration: none;
 	font-family: georgia;
 }
-a:hover
-{
+a:hover {
 	color: grey;
 }
-.inLink a
-{
+
+.inLink a {
 	font-family: courier;
 }
-.noScriptLink a
-{
+.noScriptLink a {
 	font-family: courier;
 	color: grey;
 }

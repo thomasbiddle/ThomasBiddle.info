@@ -30,12 +30,10 @@
 	</head>
 	<body onload="loadPage();">
 
-
-	<! -- Github "Fork Me" -->
-
+	<!-- Github "Fork Me" -->
 	<a href="https://github.com/thomasbiddle/ThomasBiddle.info"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+	<!-- Github "Fork Me" -->
 
-	<! -- Github "Fork Me" -->
 		<noscript>
 			</br></br></br></br></br>
 			<center>
@@ -43,17 +41,18 @@
 				Please turn on Javascript to enjoy the site :D
 			</center>
 		</noscript>
+
 		<center>
 		</br></br></br>
-			<div id="terminalEmu" style="width:800px;height:200px;border-style:solid;border-width:0px;text-align:left;" onClick="document.getElementById('terminalInputId').focus();"></div>
+			<div id="terminal" onClick="document.getElementById('terminalInputId').focus();"></div>
 			<div id="parentDiv"> <!-- DOM needs a parent node if I want to remove the child... -->
 				<div id="choosePath" style="opacity:0;">
 					Which are you?
 					</br></br>
 					<span class='inLink'>
-						<a href="#" onclick="fade('terminalEmu'); fade('choosePath'); startEmu(); document.onkeypress = returnKey; removeDiv();">echo "Geek."&nbsp;&nbsp;</a> 
+						<a href="#" onclick="fade('terminal'); fade('choosePath'); start_terminal(); document.onkeypress = returnKey; removeDiv();">echo "Geek."&nbsp;&nbsp;</a> 
 						| 
-						<a href="#" onclick="fade('terminalEmu'); fade('choosePath'); startEmuPrint(); removeDiv();">&nbsp;&nbsp;&nbsp;... huh?&nbsp;&nbsp;&nbsp;&nbsp;</a>
+						<a href="#" onclick="fade('terminal'); fade('choosePath'); startEmuPrint(); removeDiv();">&nbsp;&nbsp;&nbsp;... huh?&nbsp;&nbsp;&nbsp;&nbsp;</a>
 					</span>
 				</div>
 			</div>
