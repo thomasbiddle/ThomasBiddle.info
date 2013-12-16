@@ -3,7 +3,6 @@
 		<title> Thomas Biddle | Resume </title>
 		<LINK href="assets/css/resume-style.css" rel="stylesheet" type="text/css">
 		<script src="assets/js/resume-main.js"></script>
-		<script src="assets/js/resume-print.js"></script>
 		<script src="assets/js/resume-terminal.js"></script>
 		<!-- Send Android Phones to the Mobile App -->
 		<script type="text/javascript"> // <![CDATA[
@@ -52,7 +51,17 @@
 					<span class='inLink'>
 						<a href="#" onclick="fade('terminal'); fade('choosePath'); start_terminal(); document.onkeypress = returnKey; removeDiv();">echo "Geek."&nbsp;&nbsp;</a> 
 						| 
-						<a href="#" onclick="fade('terminal'); fade('choosePath'); startEmuPrint(); removeDiv();">&nbsp;&nbsp;&nbsp;... huh?&nbsp;&nbsp;&nbsp;&nbsp;</a>
+						<a href="#"
+						onclick=
+							"fade('terminal');
+							fade('choosePath');
+							start_terminal();
+							command('about');
+							command('education');
+							command('workhistory');
+							command('portfolio');
+							removeDiv();"
+						>&nbsp;&nbsp;&nbsp;... huh?&nbsp;&nbsp;&nbsp;&nbsp;</a>
 					</span>
 				</div>
 			</div>
