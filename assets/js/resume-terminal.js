@@ -31,19 +31,16 @@ function mail_timer() {
     echo('');
     reset_terminal();
 }
-function resetVars() {
+function reset_prompt() {
     "use strict";
     SHELLSTART = USERNAME + "@" + BOXNAME + " ~> ";
     SHELLNEW = SHELLSTART + SHELLINPUT;
 }
-function currentText() {
-    "use strict";
-    var x = document.getElementById('terminal').innerHTML;
-    return x;
-}
+
 function echo(x) {
     "use strict";
-    document.getElementById('terminal').innerHTML = currentText() + x + "</br>";
+    var text = document.getElementById('terminal').innerHTML;
+    document.getElementById('terminal').innerHTML = text + x + "</br>";
 }
 function start_terminal() {
     "use strict";
@@ -203,7 +200,7 @@ function command(input) {
                 echo(BOXNAME + "");
             }
         }
-        resetVars();
+        reset_prompt();
         reset_terminal();
     } else if (input.substring(0, 8) === "hostname") {
         document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
@@ -216,7 +213,7 @@ function command(input) {
             echo("Hostname cannot be empty.");
         }
         echo('');
-        resetVars();
+        reset_prompt();
         reset_terminal();
     } else if (input.substring(0, 2) === "ls") {
         document.getElementById('terminal').removeChild(document.getElementById('terminal-input'));
