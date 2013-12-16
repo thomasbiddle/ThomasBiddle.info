@@ -2,8 +2,8 @@
 	<head>
 		<title> Thomas Biddle | Resume </title>
 		<LINK href="assets/css/resume-style.css" rel="stylesheet" type="text/css">
-		<script src="assets/js/resume-main.js"></script>
 		<script src="assets/js/resume-terminal.js"></script>
+		<script src="assets/js/fade.js"></script>
 		<!-- Send Android Phones to the Mobile App -->
 		<script type="text/javascript"> // <![CDATA[
 			if ( (navigator.userAgent.indexOf('Android') != -1) ) {
@@ -43,25 +43,16 @@
 
 		<center>
 		</br></br></br>
-			<div id="terminal" onClick="document.getElementById('terminalInputId').focus();"></div>
-			<div id="parentDiv"> <!-- DOM needs a parent node if I want to remove the child... -->
+			<div id="terminal" onClick="document.getElementById('terminal-input').focus();"></div>
+			<div id="container"> <!-- DOM needs a parent node if I want to remove the child... -->
 				<div id="choosePath" style="opacity:0;">
 					Which are you?
 					</br></br>
 					<span class='inLink'>
-						<a href="#" onclick="fade('terminal'); fade('choosePath'); start_terminal(); document.onkeypress = returnKey; removeDiv();">echo "Geek."&nbsp;&nbsp;</a> 
-						| 
-						<a href="#"
-						onclick=
-							"fade('terminal');
-							fade('choosePath');
-							start_terminal();
-							command('about');
-							command('education');
-							command('workhistory');
-							command('portfolio');
-							removeDiv();"
-						>&nbsp;&nbsp;&nbsp;... huh?&nbsp;&nbsp;&nbsp;&nbsp;</a>
+						<a href="#" onclick="start_terminal();">echo "Geek."&nbsp;&nbsp;</a> |
+						<a href="#" onclick="start_terminal(); command('about'); command('education'); command('workhistory'); command('portfolio');">
+							&nbsp;&nbsp;&nbsp;... huh?&nbsp;&nbsp;&nbsp;&nbsp;
+						</a>
 					</span>
 				</div>
 			</div>

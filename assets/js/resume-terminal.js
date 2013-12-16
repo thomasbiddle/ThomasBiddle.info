@@ -6,9 +6,17 @@ var INMAIL = false,                                                             
     BOXNAME = "resume",                                                             // The hostname string used in the terminal prompt.
     MESSAGETIME = 6,                                                                // The "loading" time in seconds.
     SHELLSTART = USERNAME + "@" + BOXNAME + " ~> ",                                 // The string for the terminal prompt.
-    SHELLINPUT = '<input type="text" id="terminal-input" autocomplete="off"/>',    // The terminals input box.
+    SHELLINPUT = '<input type="text" id="terminal-input" autocomplete="off"/>',     // The terminals input box.
     SHELLNEW = SHELLSTART + SHELLINPUT;                                             // The terminal prompt and the input box, so we can change the prompt.
 
+/*
+    Remove the landing div and resize our terminal
+*/
+function remove_div() {
+    "use strict";
+    setTimeout(document.getElementById('container').removeChild(document.getElementById('choosePath')), 1500);
+    setTimeout(document.getElementById('terminal').style.height = 800, 1700);
+}
 
 function reset_terminal() {
     "use strict";
@@ -39,6 +47,10 @@ function echo(x) {
 }
 function start_terminal() {
     "use strict";
+    fade('terminal');
+    fade('choosePath');
+    remove_div();
+    document.onkeypress = returnKey;
     document.getElementById('terminal').innerHTML = "";
     echo('');
     echo('');
@@ -340,4 +352,15 @@ function returnKey(evt) {
         }
     }
 }
+
+/*
+    Loading animation
+*/
+function loadPage() {
+    "use strict";
+    echo('');
+    setTimeout(fade('terminal'), 500);
+    setTimeout(fade('choosePath'), 500);
+}
+
 

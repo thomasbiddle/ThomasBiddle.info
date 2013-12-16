@@ -1,4 +1,3 @@
-/*jslint browser:true */
 /*
     Stole this guy below - Credits to the first Google result: http://www.switchonthecode.com/tutorials/javascript-tutorial-simple-fade-animation 
 */
@@ -52,27 +51,3 @@ function animateFade(lastTick, eid) {
     setTimeout("animateFade(" + curTick + ",'" + eid + "')", 33);
 }
 /* End Animation Script */
-/*
-    Remove the landing div and resize our terminal
-*/
-function removeDiv() {
-    "use strict";
-    setTimeout(document.getElementById('parentDiv').removeChild(document.getElementById('choosePath')), 1500);
-    setTimeout(document.getElementById('terminal').style.height = 800, 1700);
-}
-/*
-    Add to the terminal div
-*/
-function addInput(x) {
-    "use strict";
-    document.getElementById('terminal').innerHTML = document.getElementById('terminal').innerHTML + x;
-}
-/*
-    Loading animation
-*/
-function loadPage() {
-    "use strict";
-    addInput("</br>");
-    setTimeout(fade('terminal'), 500);
-    setTimeout(fade('choosePath'), 500);
-}
