@@ -2,8 +2,8 @@
 	<head>
 		<title> Thomas Biddle | Resume </title>
 		<LINK href="assets/css/resume-style.css" rel="stylesheet" type="text/css">
-		<script src="assets/js/resume-terminal.js"></script>
 		<script src="assets/js/fade.js"></script>
+		<script src="assets/js/resume-terminal.js"></script>
 		<!-- Send Android Phones to the Mobile App -->
 		<script type="text/javascript"> // <![CDATA[
 			if ( (navigator.userAgent.indexOf('Android') != -1) ) {
@@ -26,6 +26,17 @@
 
 		</script>
 		<!-- End Google Analytics -->
+
+		<script type="text/javascript">
+			/*
+			    Loading animation
+			*/
+			function loadPage() {
+			    "use strict";
+			    setTimeout(fade('terminal'), 500);
+			    setTimeout(fade('choosePath'), 500);
+			}
+		</script>
 	</head>
 	<body onload="loadPage();">
 
